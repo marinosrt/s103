@@ -1,10 +1,6 @@
 package n2exercici1;
 
-import n1exercici1.Month;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static n2exercici1.Tools.getInt;
 import static n2exercici1.Tools.getString;
@@ -14,8 +10,8 @@ public class Main {
     public static void main(String[] args ){
 
         int klk;
-        ArrayList<Restaurant> restaurantArrayList = new ArrayList<>();
         Set<Restaurant> restaurantHashSet = new HashSet<>();
+
         do {
             System.out.println("Que vols fer?\n" +
                     "1. Afegir un restaurant.\n" +
@@ -39,25 +35,32 @@ public class Main {
         Restaurant rest = new Restaurant(getString("What's the restaurant name?"),
                 getInt("What's it's punctuation?"));
 
-
-        if(clientExist(rest, restaurantHashSet)) {
-            //Ya existe
+        if(restaurantExist(rest, restaurantHashSet)) {
+            System.out.println("This restaurant is already at our database.");
         } else {
-            //Se inserta
+            restaurantHashSet.add(rest);
+            System.out.println("Restaurant afegit amb exit.");
         }
 
     }
 
-    private static boolean clientExist(Restaurant restaurant, Set<Restaurant> restaurantHashSet) {
-        boolean existe = false;
+    private static boolean restaurantExist(Restaurant restaurant, Set<Restaurant> restaurantHashSet) {
+        boolean exist = false;
 
-        for(int i = 0; i < restaurantHashSet.size(); i++) {
-            if(restaurantHashSet.get(i).punctuation == restaurant.punctuation) {
-                existe = true;
-                break;
+        Iterator <Restaurant> it = restaurantHashSet.iterator();
+
+        while (it.hasNext() && !exist){
+            Restaurant rest1 = it.next();
+            /*if (it.next().getName().equalsIgnoreCase(restaurant.getName()) && it.next().getPunctuation() == restaurant.getPunctuation()){
+                //if (it.next().getPunctuation() == restaurant.getPunctuation()){
+                    exist = true;
+               // }
+            }*/
+            if(rest1.getName().equalsIgnoreCase(restaurant.getName()) && rest1.getPunctuation() == restaurant.getPunctuation()){
+                exist = true;
             }
         }
 
-        return existe;
+        return exist;
     }
 }
