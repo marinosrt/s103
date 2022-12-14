@@ -13,17 +13,17 @@ public class Main {
         Set<Restaurant> restaurantHashSet = new HashSet<>();
 
         do {
-            System.out.println("Que vols fer?\n" +
-                    "1. Afegir un restaurant.\n" +
-                    "2. Sortir.");
-            klk = getInt("Tria una opció");
+            System.out.println("What do you want to do?\n" +
+                    "1. Add a restaurant.\n" +
+                    "2. Exit.");
+            klk = getInt("Choose an option");
 
             switch (klk){
                 case 1:
                     addRestaurant(restaurantHashSet);
                     break;
                 case 2:
-                    System.out.println("Adeu!");
+                    System.out.println("Arrivederchi!");
                     break;
             }
         } while (klk != 2);
@@ -39,7 +39,7 @@ public class Main {
             System.out.println("This restaurant is already at our database.");
         } else {
             restaurantHashSet.add(rest);
-            System.out.println("Restaurant afegit amb exit.");
+            System.out.println("Restaurant successfully added.");
         }
 
     }
@@ -51,11 +51,6 @@ public class Main {
 
         while (it.hasNext() && !exist){
             Restaurant rest1 = it.next();
-            /*if (it.next().getName().equalsIgnoreCase(restaurant.getName()) && it.next().getPunctuation() == restaurant.getPunctuation()){
-                //if (it.next().getPunctuation() == restaurant.getPunctuation()){
-                    exist = true;
-               // }
-            }*/
             if(rest1.getName().equalsIgnoreCase(restaurant.getName()) && rest1.getPunctuation() == restaurant.getPunctuation()){
                 exist = true;
             }

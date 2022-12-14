@@ -10,9 +10,8 @@ public class Main {
     public static void main(String[] args ){
 
         int klk;
-        Set<Restaurant> restaurantHashSet = new HashSet<>();
-        Set<Restaurant> restaurantHash = new HashSet<Restaurant>();
-        SortedSet<Restaurant> sortedRestaurants = new TreeSet<Restaurant>();
+        //Set<Restaurant> restaurantHashSet = new HashSet<>();
+        Set<Restaurant> restaurantTreeSet = new TreeSet<>(new objectComparator());
 
         do {
             System.out.println("What do you want to do?\n" +
@@ -26,13 +25,10 @@ public class Main {
                     System.out.println("Arrivederchi!");
                     break;
                 case 1:
-                    addRestaurant(restaurantHashSet, sortedRestaurants, restaurantHash);
+                    addRestaurant(restaurantTreeSet);
                     break;
                 case 2:
-                    /*restaurantList = new ArrayList<Restaurant>(restaurantHashSet);
-                    Collections.sort(restaurantList);
-                    System.out.println(restaurantList);*/
-                    System.out.println(sortedRestaurants);
+                    displayRestaurants(restaurantTreeSet);
                     break;
             }
         } while (klk != 0);
@@ -40,26 +36,24 @@ public class Main {
     }
 
 
-    public static void addRestaurant(Set<Restaurant> restaurantHashSet, SortedSet<Restaurant> sortedRestaurants, Set<Restaurant> restaurantHash){
+    public static void addRestaurant(Set<Restaurant> restaurantTreeSet){
 
         Restaurant rest = new Restaurant(getString("What's the restaurant name?"),
                 getInt("What's it's punctuation?"));
 
-        if(restaurantExist(rest, restaurantHashSet)) {
+        if(restaurantExist(rest, restaurantTreeSet)) {
             System.out.println("This restaurant is already at our database. Try again.");
         } else {
-            restaurantHashSet.add(rest);
-            restaurantHash.add(rest);
-            sortedRestaurants.add(rest);
+            restaurantTreeSet.add(rest);
             System.out.println("Restaurant added successfully.");
         }
 
     }
 
-    private static boolean restaurantExist(Restaurant restaurant, Set<Restaurant> restaurantHashSet) {
+    private static boolean restaurantExist(Restaurant restaurant, Set<Restaurant> restaurantTreeSet) {
         boolean exist = false;
 
-        Iterator <Restaurant> it = restaurantHashSet.iterator();
+        Iterator <Restaurant> it = restaurantTreeSet.iterator();
 
         while (it.hasNext() && !exist){
             Restaurant rest1 = it.next();
@@ -69,5 +63,15 @@ public class Main {
         }
 
         return exist;
+    }
+
+    private static void displayRestaurants(Set<Restaurant> restaurantTreeSet){
+
+        System.out.println("Those are all the restaurants:\n");
+        for (Restaurant res : restaurantTreeSet){
+            System.out.print(res.getName() + " " + res.getPunctuation());
+            System.out.println();
+        }
+
     }
 }
