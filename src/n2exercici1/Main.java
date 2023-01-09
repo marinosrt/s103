@@ -35,12 +35,15 @@ public class Main {
         Restaurant rest = new Restaurant(getString("What's the restaurant name?"),
                 getInt("What's it's punctuation?"));
 
+        //IF PER A MOSTRAR MISSATGE SI S'HA AFEGIT O NO.
         if(restaurantExist(rest, restaurantHashSet)) {
             System.out.println("This restaurant is already at our database.");
         } else {
             restaurantHashSet.add(rest);
             System.out.println("Restaurant successfully added.");
         }
+
+
 
     }
 
@@ -51,7 +54,7 @@ public class Main {
 
         while (it.hasNext() && !exist){
             Restaurant rest1 = it.next();
-            if(rest1.getName().equalsIgnoreCase(restaurant.getName()) && rest1.getPunctuation() == restaurant.getPunctuation()){
+            if (rest1.equals(restaurant)){
                 exist = true;
             }
         }

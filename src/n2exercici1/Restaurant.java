@@ -25,12 +25,14 @@ public class Restaurant {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Restaurant restaurant)) return false;
-        return Objects.equals(name, restaurant.name);
+        if (o == null || getClass() != o.getClass()) return false;
+        Restaurant that = (Restaurant) o;
+        //return punctuation == that.punctuation && name.equals(that.name);
+        return Objects.equals(name, that.name) && punctuation == that.punctuation;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, punctuation);
     }
 }
