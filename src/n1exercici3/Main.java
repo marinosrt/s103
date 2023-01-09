@@ -41,7 +41,7 @@ public class Main {
 
     public static Map<String, String> HashMapFromTextFile(){
 
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
         BufferedReader br = null;
 
         try {
@@ -114,12 +114,12 @@ public class Main {
             String data = playersName + " : " + score + " points.\n";
             File file = new File("src/n1exercici3/classificacio.txt");
 
-            // Si el archivo no existe, se crea!
+            // Si l'arxiu no existeix, es crea
             if (!file.exists()) {
                 file.createNewFile();
             }
 
-            // flag true, indica adjuntar información al archivo.
+            // flag true, indica adjuntar informació a l'arxiu
             fw = new FileWriter(file.getAbsoluteFile(), true);
             bw = new BufferedWriter(fw);
             bw.write(data);
@@ -130,7 +130,7 @@ public class Main {
             e.printStackTrace();
         } finally {
             try {
-                //Cierra instancias de FileWriter y BufferedWriter
+                //Cierre instancias de FileWriter y BufferedWriter
                 if (bw != null)
                     bw.close();
                 if (fw != null)
